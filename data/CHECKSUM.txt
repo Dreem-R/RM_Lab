@@ -1,0 +1,8 @@
+diabetic_data.csv
+sha256  0689e7ec031237dc63031b938805c48377748761a3b26acab621567afa24df97
+rows    101766
+cols    50
+patients 71518
+classes {'NO': 54864, '>30': 35545, '<30': 11357}
+Verified against the UCI ML Repository description for dataset 296
+(Diabetes 130-US hospitals for years 1999-2008, Strack et al. 2014).

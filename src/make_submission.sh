@@ -15,8 +15,12 @@ cat > /tmp/overleaf/README.txt <<'TXT'
 Overleaf project — upload this zip via "New Project > Upload Project".
 
 Compiler: pdfLaTeX. Main document: main.tex. Bibliography: refs.bib (BibTeX).
-llncs.cls and splncs04.bst are the official Springer LNCS class and style,
-included so the project compiles without extra setup.
+llncs.cls (version 2.25, 03-Sep-2026) and splncs04.bst are the official
+Springer LNCS files, taken from the Springer Nature LNCS Overleaf template
+and included so the project compiles without extra setup.
+
+The preamble follows the template: T1 font encoding, newtxtext/newtxmath
+(Times Roman), and the Springer URL style.
 
 Before submitting, edit the author block near the top of main.tex
 (the line marked ">>> EDIT THESE THREE LINES BEFORE SUBMITTING <<<").
