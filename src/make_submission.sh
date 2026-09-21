@@ -33,6 +33,11 @@ cp notebook/readmission_analysis.pdf  submission/ 2>/dev/null || echo "  (notebo
 cp notebook/readmission_analysis.html submission/ 2>/dev/null || echo "  (notebook HTML missing)"
 cp notebook/readmission_analysis.ipynb submission/ 2>/dev/null || true
 cp PROMPTS.md submission/prompt_history.md
+# (d) prompt history also as a Word document and a PDF
+if [ -f submission/prompt_history.docx ]; then echo "  prompt_history.docx present"; fi
+pandoc PROMPTS.md -o submission/prompt_history.pdf --pdf-engine=xelatex \
+  -V geometry:a4paper -V geometry:margin=2.4cm -V fontsize=10pt -V colorlinks=true \
+  --toc --toc-depth=2
 cp data/DATASET.md submission/dataset_source.md
 
 # a single archive with everything, for convenience
