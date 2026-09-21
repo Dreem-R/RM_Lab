@@ -388,8 +388,11 @@ which RQ3 isolates.
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{fig_utility.pdf}
-\caption{(a) Decision curves: all models yield positive net benefit over treat-all and
-treat-none across the plausible threshold range, and are mutually indistinguishable.
+\caption{(a) Decision curves over the threshold range that is plausible for an outcome
+with 11\% prevalence. All four models are mutually indistinguishable and beat both
+treat-all and treat-none up to $p_t \approx 0.11$; beyond that their net benefit falls
+below treat-none, because the class-weighted probabilities plotted here are inflated
+(Section~\ref{sec:imbalance}) rather than because the ranking fails.
 (b) Readmissions captured as a function of the alert budget.}
 \label{fig:utility}
 \end{figure}
@@ -426,6 +429,7 @@ overlap, the optimism is negligible for every model family.}
 \end{figure}
 
 \subsection{RQ3: imbalance corrections}
+\label{sec:imbalance}
 
 \input{tables/tab_imbalance_wrapper}
 
@@ -488,7 +492,7 @@ nothing measurable.}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.85\textwidth]{fig_shap.pdf}
+\includegraphics[width=0.92\textwidth]{fig_shap.pdf}
 \caption{TreeSHAP attributions for the uncorrected LightGBM model on 3{,}000 test
 encounters.}
 \label{fig:shap}
@@ -577,9 +581,12 @@ not contain, and the useful next step is better data rather than better classifi
 tables, the literature search log and the complete prompt history accompany this
 submission; all results derive from a single deterministic run with fixed seeds.
 
+% flush any pending floats so no table or figure lands inside the reference list
+\clearpage
 \bibliographystyle{splncs04}
 \bibliography{refs}
 
+\clearpage
 \appendix
 \section{Screening record}
 \label{app:screening}

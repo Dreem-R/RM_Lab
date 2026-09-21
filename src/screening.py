@@ -109,7 +109,8 @@ def trunc(t, n=62):
     return t if len(t) <= n else t[:n - 3] + "..."
 
 # ---- full screening log (appendix) ----
-L = [r"\begin{longtable}{rp{6.0cm}p{1.1cm}p{5.0cm}}",
+L = [r"\setlength{\tabcolsep}{4pt}",
+     r"\begin{longtable}{rp{4.9cm}p{1.35cm}p{4.6cm}}",
      r"\caption{Screening record for all 77 de-duplicated candidates. Reason codes: "
      r"R~=~review or commentary without a primary model, O~=~outcome outside the readmission "
      r"construct, D~=~data modality outside structured tabular records, M~=~no predictive "
@@ -117,8 +118,10 @@ L = [r"\begin{longtable}{rp{6.0cm}p{1.1cm}p{5.0cm}}",
      r"\toprule \# & Title & Decision & Reason \\ \midrule", r"\endfirsthead",
      r"\toprule \# & Title & Decision & Reason \\ \midrule", r"\endhead", r"\bottomrule", r"\endfoot"]
 for i, (t, d, r) in enumerate(S):
-    L.append(f"{i} & {esc(trunc(t))} & {d} & {esc(trunc(r, 58))} \\\\")
+    # p{} columns wrap, so only very long titles need shortening
+    L.append(f"{i} & {esc(trunc(t, 78))} & {d} & {esc(r)} \\\\")
 L.append(r"\end{longtable}")
+L.append(r"\setlength{\tabcolsep}{6pt}")
 (TAB / "tab_screening.tex").write_text("\n".join(L))
 
 # ---- extraction table for the studies used on the same benchmark ----

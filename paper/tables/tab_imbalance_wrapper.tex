@@ -2,7 +2,7 @@
 \centering
 \small
 \caption{Effect of class-imbalance treatments on a fixed LightGBM configuration.}\label{tab:imbalance}
-\resizebox{\textwidth}{!}{\input{tables/tab_imbalance}}
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{\input{tables/tab_imbalance}}
 \\[3pt]
 \begin{minipage}{\textwidth}\centering {\footnotesize Identical LightGBM configuration throughout; only the treatment of the class distribution changes. The observed event rate in the test set is 0.113.}\end{minipage}
 \end{table}

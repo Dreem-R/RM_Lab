@@ -386,8 +386,8 @@ vv = list(v[keep]) + [v[~keep].sum()]
 ax.bar(kk, np.array(vv) / 1000, color=C["blue"], width=0.66, zorder=3)
 ax.set_xlabel("Encounters contributed by a patient"); ax.set_ylabel("Patients (thousands)")
 ax.set_title("(b) Patient clustering", loc="left")
-ax.text(0.97, 0.9, f"{RESULTS['pct_repeat_encounters']:.0f}% of encounters\nfrom repeat patients",
-        transform=ax.transAxes, ha="right", fontsize=7.5, color=C["ink2"])
+ax.text(0.97, 0.70, f"{RESULTS['pct_repeat_encounters']:.0f}% of encounters\nfrom repeat patients",
+        transform=ax.transAxes, ha="right", va="top", fontsize=7.2, color=C["ink2"])
 
 ax = axes[2]
 # readmission rate as a function of the patient's encounter index
@@ -397,7 +397,8 @@ se = np.sqrt(g["mean"] * (1 - g["mean"]) / g["count"])
 ax.errorbar(g.index, g["mean"] * 100, yerr=1.96 * se * 100, marker="o", ms=4.5,
             color=C["orange"], capsize=2.5, lw=1.6, zorder=3)
 ax.axhline(prev * 100, color=C["ink2"], ls=(0, (4, 3)), lw=1.0, zorder=2)
-ax.text(0.03, prev * 100 + 0.6, "cohort mean", fontsize=7, color=C["ink2"], transform=ax.get_yaxis_transform())
+ax.text(0.97, prev * 100 - 0.9, "cohort mean", fontsize=7, color=C["ink2"],
+        ha="right", va="top", transform=ax.get_yaxis_transform())
 ax.set_xlabel("Prior encounters of same patient"); ax.set_ylabel("30-day readmission (%)")
 ax.set_xticks(range(6)); ax.set_xticklabels(["0", "1", "2", "3", "4", "5+"])
 ax.set_title("(c) Risk vs. patient history", loc="left")
@@ -756,68 +757,82 @@ for metric, mname in [(average_precision_score, "AUPRC"), (roc_auc_score, "AUROC
     reg(f"delta_{mname}_best_vs_lr", dict(diff=diff, lo=lo, hi=hi, p=pval))
 
 # %%
-fig, axes = plt.subplots(1, 3, figsize=(7.3, 2.65))
+fig, axes = plt.subplots(1, 3, figsize=(7.3, 2.95))
 plot_models = [m for m in PRED if m != "Baseline (prevalence)"]
 
+handles = []
 ax = axes[0]
 for i, name in enumerate(plot_models):
     fpr, tpr, _ = roc_curve(y_te, PRED[name])
-    ax.plot(fpr, tpr, color=SERIES[i], dashes=DASH[i] if DASH[i][0] else (1, 0),
-            label=f"{name} ({res.loc[name,'AUROC']:.3f})")
+    h, = ax.plot(fpr, tpr, color=SERIES[i], dashes=DASH[i] if DASH[i][0] else (1, 0),
+                 label=name)
+    handles.append(h)
 ax.plot([0, 1], [0, 1], color=C["muted"], lw=1.0, dashes=(2, 2))
 ax.set_xlabel("False positive rate"); ax.set_ylabel("True positive rate")
-ax.set_title("(a) ROC", loc="left"); ax.legend(loc="lower right", fontsize=6.8, title="Model (AUROC)",
-                                               title_fontsize=6.8)
+ax.set_title("(a) ROC", loc="left")
 
 ax = axes[1]
 for i, name in enumerate(plot_models):
     pr, rc, _ = precision_recall_curve(y_te, PRED[name])
-    ax.plot(rc, pr, color=SERIES[i], dashes=DASH[i] if DASH[i][0] else (1, 0),
-            label=f"{name} ({res.loc[name,'AUPRC']:.3f})")
+    ax.plot(rc, pr, color=SERIES[i], dashes=DASH[i] if DASH[i][0] else (1, 0))
 ax.axhline(y_te.mean(), color=C["muted"], lw=1.0, dashes=(2, 2))
-ax.text(0.98, y_te.mean() + 0.006, "no skill", ha="right", fontsize=7, color=C["ink2"])
+ax.text(0.96, y_te.mean() + 0.015, "no skill", ha="right", va="bottom",
+        fontsize=6.8, color=C["ink2"])
 ax.set_xlabel("Recall"); ax.set_ylabel("Precision"); ax.set_ylim(0, 0.55)
 ax.set_title("(b) Precision-recall", loc="left")
-ax.legend(loc="upper right", fontsize=6.8, title="Model (AUPRC)", title_fontsize=6.8)
 
 ax = axes[2]
 for i, name in enumerate(plot_models):
     pt, pp = calibration_curve(y_te, PRED[name], n_bins=10, strategy="quantile")
-    ax.plot(pp, pt, marker="o", ms=3.4, color=SERIES[i],
-            dashes=DASH[i] if DASH[i][0] else (1, 0), label=name)
-ax.plot([0, 0.6], [0, 0.6], color=C["muted"], lw=1.0, dashes=(2, 2))
+    ax.plot(pp, pt, marker="o", ms=3.2, color=SERIES[i],
+            dashes=DASH[i] if DASH[i][0] else (1, 0))
+ax.plot([0, 0.75], [0, 0.75], color=C["muted"], lw=1.0, dashes=(2, 2))
+ax.set_xlim(0, 0.75); ax.set_ylim(0, 0.75)
 ax.set_xlabel("Predicted risk"); ax.set_ylabel("Observed frequency")
-ax.set_title("(c) Calibration", loc="left"); ax.legend(loc="upper left", fontsize=6.8)
-fig.tight_layout(); save(fig, "fig_performance"); plt.close(fig)
+ax.set_title("(c) Calibration", loc="left")
+fig.tight_layout(rect=(0, 0.11, 1, 1))
+fig.legend(handles, plot_models, loc="lower center", bbox_to_anchor=(0.5, 0.005),
+           ncol=4, fontsize=7.2, frameon=False)
+save(fig, "fig_performance"); plt.close(fig)
 
 # %%
 # Decision-curve analysis + sensitivity as a function of the alert budget
-fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.7))
+fig, axes = plt.subplots(1, 2, figsize=(7.0, 3.0))
 ax = axes[0]
-ths = np.linspace(0.05, 0.45, 60)
+# thresholds far above the prevalence are implausible for an 11% outcome
+ths = np.linspace(0.02, 0.25, 70)
+handles = []
 for i, name in enumerate(plot_models):
     nb = [net_benefit(y_te, PRED[name], t) for t in ths]
-    ax.plot(ths, nb, color=SERIES[i], dashes=DASH[i] if DASH[i][0] else (1, 0), label=name)
-ax.plot(ths, [net_benefit(y_te, np.ones_like(y_te, dtype=float), t) for t in ths],
-        color=C["muted"], lw=1.0, dashes=(4, 2), label="Treat all")
+    h, = ax.plot(ths, nb, color=SERIES[i], dashes=DASH[i] if DASH[i][0] else (1, 0))
+    handles.append(h)
+h_all, = ax.plot(ths, [net_benefit(y_te, np.ones_like(y_te, dtype=float), t) for t in ths],
+                 color=C["muted"], lw=1.1, dashes=(4, 2))
 ax.axhline(0, color=C["ink2"], lw=0.9)
-ax.text(0.42, 0.002, "Treat none", fontsize=7, color=C["ink2"], ha="right")
+ax.text(0.247, 0.0018, "Treat none", fontsize=6.8, color=C["ink2"], ha="right")
 ax.set_xlabel("Risk threshold $p_t$"); ax.set_ylabel("Net benefit")
-ax.set_ylim(-0.02, 0.06); ax.set_title("(a) Decision curve", loc="left")
-ax.legend(fontsize=6.8, loc="upper right")
+ax.set_ylim(-0.012, 0.075); ax.set_xlim(0.02, 0.25)
+ax.set_title("(a) Decision curve", loc="left")
+
+nb_best = np.array([net_benefit(y_te, PRED[BEST], t) for t in ths])
+cross = float(ths[np.argmax(nb_best <= 0)]) if (nb_best <= 0).any() else float("nan")
+reg("net_benefit_zero_crossing", cross)
+print(f"net benefit of {BEST} reaches zero at p_t = {cross:.3f}")
 
 ax = axes[1]
 rates = np.linspace(0.02, 0.5, 40)
 for i, name in enumerate(plot_models):
-    s = [metrics_at_alert(y_te, PRED[name], r)["sens"] for r in rates]
-    ax.plot(rates * 100, np.array(s) * 100, color=SERIES[i],
-            dashes=DASH[i] if DASH[i][0] else (1, 0), label=name)
+    sv = [metrics_at_alert(y_te, PRED[name], r)["sens"] for r in rates]
+    ax.plot(rates * 100, np.array(sv) * 100, color=SERIES[i],
+            dashes=DASH[i] if DASH[i][0] else (1, 0))
 ax.plot(rates * 100, rates * 100, color=C["muted"], lw=1.0, dashes=(2, 2))
-ax.text(40, 36, "random", fontsize=7, color=C["ink2"], rotation=32)
+ax.text(41, 36, "random", fontsize=6.8, color=C["ink2"], rotation=30)
 ax.set_xlabel("Alert rate: % of discharges flagged"); ax.set_ylabel("Readmissions captured (%)")
 ax.set_title("(b) Yield at a fixed follow-up budget", loc="left")
-ax.legend(fontsize=6.8, loc="lower right")
-fig.tight_layout(); save(fig, "fig_utility"); plt.close(fig)
+fig.tight_layout(rect=(0, 0.12, 1, 1))
+fig.legend(handles + [h_all], plot_models + ["Treat all"], loc="lower center",
+           bbox_to_anchor=(0.5, 0.005), ncol=5, fontsize=7, frameon=False)
+save(fig, "fig_utility"); plt.close(fig)
 
 # %% [markdown]
 # ## 8. Does correcting the class imbalance help?
@@ -886,34 +901,49 @@ print("\nmean predicted risk (true prevalence = %.3f):" % y_te.mean())
 print({k: round(float(v.mean()), 3) for k, v in zip(imb.index, imb["pred"])})
 
 # %%
-fig, axes = plt.subplots(1, 3, figsize=(7.3, 2.65))
+fig, axes = plt.subplots(1, 3, figsize=(7.3, 3.0))
 cols = [C["blue"], C["orange"], C["aqua"], C["violet"], C["ink2"], C["muted"]]
 dsh = [(1, 0), (5, 2), (1.6, 1.6), (7, 2, 1.6, 2), (3, 1, 1, 1), (2, 2)]
 
-ax = axes[0]
+SHORT = {"None": "None", "Class weights": "Class wt.", "SMOTE (1:1)": "SMOTE",
+         "SMOTE-NC (1:1)": "SMOTE-NC", "Undersampling (1:1)": "Undersamp.",
+         "None + isotonic": "None+iso."}
+lbls = [SHORT.get(n, n) for n in imb.index]
 xs = np.arange(len(imb))
-ax.bar(xs, imb.AUPRC, color=C["blue"], width=0.6, zorder=3)
+
+ax = axes[0]
+ax.bar(xs, imb.AUPRC, color=C["blue"], width=0.62, zorder=3)
 ax.axhline(y_te.mean(), color=C["orange"], dashes=(4, 2), lw=1.2, zorder=4)
-ax.text(len(imb) - 0.4, y_te.mean() + 0.004, "no skill", ha="right", fontsize=7, color=C["orange"])
+ax.text(0.02, 0.97, f"dashed line: no skill ({y_te.mean():.3f})", transform=ax.transAxes,
+        ha="left", va="top", fontsize=6.5, color=C["orange"])
 for i, v in enumerate(imb.AUPRC):
-    ax.text(i, v + 0.005, f"{v:.3f}", ha="center", fontsize=7)
-ax.set_xticks(xs); ax.set_xticklabels(imb.index, rotation=28, ha="right", fontsize=7)
-ax.set_ylabel("AUPRC"); ax.set_ylim(0, 0.3); ax.set_title("(a) Ranking is unchanged", loc="left")
+    ax.text(i, v + 0.008, f"{v:.3f}", ha="center", va="bottom", fontsize=6.2, rotation=90)
+ax.set_xticks(xs); ax.set_xticklabels(lbls, rotation=30, ha="right",
+                                      rotation_mode="anchor", fontsize=6.8)
+ax.set_ylabel("AUPRC"); ax.set_ylim(0, 0.33); ax.set_xlim(-0.6, len(imb) - 0.4)
+ax.set_title("(a) Ranking is unchanged", loc="left")
 
 ax = axes[1]
-ax.bar(xs, imb.ECE, color=C["orange"], width=0.6, zorder=3)
+ax.bar(xs, imb.ECE, color=C["orange"], width=0.62, zorder=3)
 for i, v in enumerate(imb.ECE):
-    ax.text(i, v + 0.008, f"{v:.3f}", ha="center", fontsize=7)
-ax.set_xticks(xs); ax.set_xticklabels(imb.index, rotation=28, ha="right", fontsize=7)
-ax.set_ylabel("Expected calibration error"); ax.set_title("(b) Calibration is destroyed", loc="left")
+    ax.text(i, v + 0.012, f"{v:.3f}", ha="center", va="bottom", fontsize=6.2, rotation=90)
+ax.set_xticks(xs); ax.set_xticklabels(lbls, rotation=30, ha="right",
+                                      rotation_mode="anchor", fontsize=6.8)
+ax.set_ylabel("Expected calibration error"); ax.set_ylim(0, 0.47)
+ax.set_xlim(-0.6, len(imb) - 0.4)
+ax.set_title("(b) Calibration is destroyed", loc="left")
 
 ax = axes[2]
 for i, (name, p) in enumerate(zip(imb.index, imb["pred"])):
     pt, pp = calibration_curve(y_te, p, n_bins=10, strategy="quantile")
-    ax.plot(pp, pt, marker="o", ms=3.2, color=cols[i], dashes=dsh[i], label=name)
-ax.plot([0, 1], [0, 1], color=C["muted"], lw=1.0, dashes=(2, 2))
+    ax.plot(pp, pt, marker="o", ms=3.0, color=cols[i], dashes=dsh[i],
+            label=SHORT.get(name, name))
+ax.plot([0, 0.8], [0, 0.8], color=C["muted"], lw=1.0, dashes=(2, 2))
+ax.set_xlim(0, 0.8); ax.set_ylim(0, 0.8)          # clip to the occupied range
 ax.set_xlabel("Predicted risk"); ax.set_ylabel("Observed frequency")
-ax.set_title("(c) Calibration curves", loc="left"); ax.legend(fontsize=6.5, loc="upper left")
+ax.set_title("(c) Calibration curves", loc="left")
+ax.legend(fontsize=5.8, loc="upper left", handlelength=2.2, borderpad=0.2,
+          labelspacing=0.25)
 fig.tight_layout(); save(fig, "fig_imbalance"); plt.close(fig)
 
 # %% [markdown]
@@ -953,24 +983,29 @@ reg("max_optimism_auprc_pct", float(split["rel_AUPRC_%"].max()))
 reg("mean_optimism_auroc", float(split["dAUROC"].mean()))
 
 # %%
-fig, axes = plt.subplots(1, 2, figsize=(7.0, 2.7))
+fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.9))
 w = 0.36; xs = np.arange(len(split))
 for ax, (a, b, lab) in zip(axes, [("AUROC_patient", "AUROC_encounter", "AUROC"),
                                   ("AUPRC_patient", "AUPRC_encounter", "AUPRC")]):
-    ax.bar(xs - w/2, split[a], width=w, color=C["blue"], label="Patient-level split", zorder=3)
-    ax.bar(xs + w/2, split[b], width=w, color=C["orange"], label="Encounter-level split", zorder=3)
+    h1 = ax.bar(xs - w/2, split[a], width=w, color=C["blue"], label="Patient-level split", zorder=3)
+    h2 = ax.bar(xs + w/2, split[b], width=w, color=C["orange"], label="Encounter-level split", zorder=3)
+    top = max(split[a].max(), split[b].max())
     for i in xs:
-        ax.text(i - w/2, split[a].iloc[i] + 0.004, f"{split[a].iloc[i]:.3f}", ha="center", fontsize=6.6)
-        ax.text(i + w/2, split[b].iloc[i] + 0.004, f"{split[b].iloc[i]:.3f}", ha="center", fontsize=6.6)
-    ax.set_xticks(xs); ax.set_xticklabels([m.replace(" ", "\n") for m in split.index], fontsize=7)
-    ax.set_ylabel(lab); ax.legend(fontsize=7, loc="lower right")
-    ax.set_ylim(0, max(split[b]) * 1.25)
+        # rotated labels: adjacent bars are too close for horizontal text
+        ax.text(i - w/2, split[a].iloc[i] + top * 0.02, f"{split[a].iloc[i]:.3f}",
+                ha="center", va="bottom", fontsize=6.2, rotation=90, color=C["ink"])
+        ax.text(i + w/2, split[b].iloc[i] + top * 0.02, f"{split[b].iloc[i]:.3f}",
+                ha="center", va="bottom", fontsize=6.2, rotation=90, color=C["ink"])
+    ax.set_xticks(xs)
+    ax.set_xticklabels([m.replace(" ", "\n") for m in split.index], fontsize=7)
+    ax.set_ylabel(lab)
+    ax.set_ylim(0, top * 1.38)
 axes[0].set_title("(a) Discrimination", loc="left")
 axes[1].set_title("(b) Ranking of the positive class", loc="left")
-fig.tight_layout()
-fig.text(0.5, -0.02, f"Encounter-level splitting shares {RESULTS['naive_overlap_pct']:.0f}% of test "
-                     "patients with the training set and inflates every metric.",
-         ha="center", fontsize=7.5, color=C["ink2"])
+fig.tight_layout(rect=(0, 0.10, 1, 1))
+# one shared legend beneath the panels, clear of the bars
+fig.legend([h1, h2], ["Patient-level split", "Encounter-level split"],
+           loc="lower center", bbox_to_anchor=(0.5, 0.005), ncol=2, fontsize=7.5, frameon=False)
 save(fig, "fig_leakage"); plt.close(fig)
 
 # %% [markdown]
@@ -1021,10 +1056,13 @@ ax.plot(range(len(cu)), cu.AUPRC, marker="o", ms=5, color=C["blue"], zorder=3)
 ax.axhline(y_te.mean(), color=C["muted"], dashes=(3, 2), lw=1.0)
 ax.text(len(cu) - 1, y_te.mean() + 0.004, "no skill", ha="right", fontsize=7, color=C["ink2"])
 for i, (v, n) in enumerate(zip(cu.AUPRC, cu.n_feat)):
-    ax.annotate(f"{v:.3f}", (i, v), textcoords="offset points", xytext=(0, 7), ha="center", fontsize=7)
+    ax.annotate(f"{v:.3f}", (i, v), textcoords="offset points", xytext=(0, 9),
+                ha="center", fontsize=7)
 ax.set_xticks(range(len(cu)))
-ax.set_xticklabels([s.replace("+ ", "").replace(" ", "\n") for s in cu.setting], fontsize=7)
+ax.set_xticklabels([s.replace("+ ", "") for s in cu.setting],
+                   fontsize=7, rotation=25, ha="right", rotation_mode="anchor")
 ax.set_ylabel("Test AUPRC"); ax.set_ylim(0.10, 0.25)
+ax.set_xlim(-0.5, len(cu) - 0.5)
 ax.set_title("(a) Cumulative feature blocks", loc="left")
 
 lo = ablation[ablation.kind == "leave-one-out"].sort_values("delta_vs_full")
@@ -1058,14 +1096,27 @@ mean_abs = np.abs(sv).mean(0)
 order = np.argsort(mean_abs)[::-1][:15]
 reg("top_shap", [[feat_names[i], float(mean_abs[i])] for i in order])
 
-fig = plt.figure(figsize=(6.0, 4.2))
-shap.summary_plot(sv[:, order], pd.DataFrame(Xs[:, order], columns=[feat_names[i] for i in order]),
-                  show=False, plot_size=None, color_bar_label="Feature value", alpha=0.6)
+def pretty(n):
+    """Readable axis labels for one-hot encoded feature names."""
+    for pre, rep in [("discharge_group_", "discharge: "), ("payer_code_", "payer: "),
+                     ("medical_specialty_", "specialty: "), ("diag_1_group_", "diagnosis 1: "),
+                     ("diag_2_group_", "diagnosis 2: "), ("diag_3_group_", "diagnosis 3: "),
+                     ("admission_source_", "adm. source: "), ("admission_type_", "adm. type: ")]:
+        if n.startswith(pre):
+            n = rep + n[len(pre):]
+            break
+    return n.replace("_", " ")
+
+plt.close("all")
+shap.summary_plot(sv[:, order],
+                  pd.DataFrame(Xs[:, order], columns=[pretty(feat_names[i]) for i in order]),
+                  show=False, plot_size=(6.6, 4.4), color_bar_label="Feature value", alpha=0.6)
 f_ = plt.gcf()
-f_.set_size_inches(6.0, 4.2)
-plt.title("SHAP contributions to predicted 30-day readmission risk", loc="left", fontsize=9)
-plt.xlabel("SHAP value (log-odds contribution)", fontsize=8.5)
-plt.tight_layout(); save(f_, "fig_shap"); plt.close("all")
+f_.axes[0].set_xlabel("SHAP value (log-odds contribution)", fontsize=8.5)
+f_.axes[0].tick_params(labelsize=8)
+f_.suptitle("SHAP contributions to predicted 30-day readmission risk",
+            x=0.01, ha="left", fontsize=9, y=0.995)
+save(f_, "fig_shap"); plt.close("all")
 
 # %%
 lr_pipe = MODELS["Logistic regression"]

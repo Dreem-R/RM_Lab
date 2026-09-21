@@ -1,4 +1,5 @@
-\begin{longtable}{rp{6.0cm}p{1.1cm}p{5.0cm}}
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{rp{4.9cm}p{1.35cm}p{4.6cm}}
 \caption{Screening record for all 77 de-duplicated candidates. Reason codes: R~=~review or commentary without a primary model, O~=~outcome outside the readmission construct, D~=~data modality outside structured tabular records, M~=~no predictive performance reported, Y~=~published before 2015.}\label{tab:screening}\\
 \toprule \# & Title & Decision & Reason \\ \midrule
 \endfirsthead
@@ -6,81 +7,82 @@
 \endhead
 \bottomrule
 \endfoot
-0 & Deep learning for healthcare: review, opportunities and cha... & exclude & R: narrative review, no readmission model \\
-1 & Scalable and accurate deep learning with electronic health ... & include & 30-day readmission among predicted endpoints, structure... \\
+0 & Deep learning for healthcare: review, opportunities and challenges & exclude & R: narrative review, no readmission model \\
+1 & Scalable and accurate deep learning with electronic health records & include & 30-day readmission among predicted endpoints, structured EHR \\
 2 & MIMIC-IV, a freely accessible electronic health record dataset & exclude & R: data resource descriptor, no prediction model \\
-3 & Machine Learning-Based Prediction of Heart Failure Readmiss... & include & 30-day HF readmission, tabular linked data, imbalance a... \\
-4 & Application of machine learning in predicting hospital read... & exclude & R: scoping review; retained as background evidence \\
+3 & Machine Learning-Based Prediction of Heart Failure Readmission or Death & include & 30-day HF readmission, tabular linked data, imbalance addressed \\
+4 & Application of machine learning in predicting hospital readmissions: a scop... & exclude & R: scoping review; retained as background evidence \\
 5 & Machine Learning and Data Mining Methods in Diabetes Research & exclude & R: review of diabetes ML broadly, not readmission \\
-6 & ClinicalBERT: Modeling Clinical Notes and Predicting Hospit... & exclude & D: prediction from free-text notes, not structured tabu... \\
+6 & ClinicalBERT: Modeling Clinical Notes and Predicting Hospital Readmission & exclude & D: prediction from free-text notes, not structured tabular records \\
 7 & Next-generation phenotyping of electronic health records & exclude & R: perspective on EHR data quality, no model \\
-8 & Use of electronic medical records in development and valida... & exclude & R: systematic review; retained as background evidence \\
-9 & Opportunities and challenges in developing deep learning mo... & exclude & R: systematic review of architectures \\
-10 & Key challenges for delivering clinical impact with artifici... & exclude & R: commentary on AI translation \\
-11 & Readmission prediction using deep learning on electronic he... & include & 30-day CHF readmission, cost-sensitive LSTM on EHR \\
-12 & The effects of data sources, cohort selection, and outcome ... & exclude & Y: published 2014; retained as background on design cho... \\
-13 & Revolutionizing healthcare: the role of artificial intellig... & exclude & R: educational review \\
+8 & Use of electronic medical records in development and validation of risk pre... & exclude & R: systematic review; retained as background evidence \\
+9 & Opportunities and challenges in developing deep learning models using EHR data & exclude & R: systematic review of architectures \\
+10 & Key challenges for delivering clinical impact with artificial intelligence & exclude & R: commentary on AI translation \\
+11 & Readmission prediction using deep learning on electronic health records & include & 30-day CHF readmission, cost-sensitive LSTM on EHR \\
+12 & The effects of data sources, cohort selection, and outcome definition & exclude & Y: published 2014; retained as background on design choices \\
+13 & Revolutionizing healthcare: the role of artificial intelligence in clinical... & exclude & R: educational review \\
 14 & Federated Learning for Healthcare Informatics & exclude & O: federated learning survey, outcome not readmission \\
 15 & BEHRT: Transformer for Electronic Health Records & exclude & O: predicts 301 future diagnoses, not readmission \\
-16 & Effect of Aliskiren on Postdischarge Mortality and Heart Fa... & exclude & O: randomised drug trial, not a prediction model \\
-17 & Survey on deep learning with class imbalance & exclude & R: methodological survey; retained as background on imb... \\
-18 & Machine learning prediction in cardiovascular diseases: a m... & exclude & O: diagnosis of CVD, not readmission \\
-19 & Explainable Artificial Intelligence (XAI): Concepts, taxono... & exclude & R: XAI survey, non-clinical \\
-20 & Multimodal machine learning in precision health: A scoping ... & exclude & R: scoping review of data fusion \\
-21 & Analysis and prediction of unplanned ICU readmission using ... & include & unplanned ICU readmission from MIMIC-III structured data \\
+16 & Effect of Aliskiren on Postdischarge Mortality and Heart Failure Readmissions & exclude & O: randomised drug trial, not a prediction model \\
+17 & Survey on deep learning with class imbalance & exclude & R: methodological survey; retained as background on imbalance \\
+18 & Machine learning prediction in cardiovascular diseases: a meta-analysis & exclude & O: diagnosis of CVD, not readmission \\
+19 & Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities & exclude & R: XAI survey, non-clinical \\
+20 & Multimodal machine learning in precision health: A scoping review & exclude & R: scoping review of data fusion \\
+21 & Analysis and prediction of unplanned ICU readmission using RNN-LSTM & include & unplanned ICU readmission from MIMIC-III structured data \\
 22 & Emergency department triage prediction of clinical outcomes & exclude & O: triage acuity/critical outcomes, not readmission \\
-23 & Predictors of 30-Day Unplanned Readmission After Carotid Ar... & include & 30-day readmission, Nationwide Readmission Database, ML... \\
-24 & Machine learning for clinical decision support in infectiou... & exclude & O: infection diagnosis/management \\
-25 & Patient clustering improves efficiency of federated machine... & exclude & O: outcomes are mortality and length of stay \\
-26 & Combining structured and unstructured data for predictive m... & exclude & D: fusion with clinical notes; outcome not 30-day readm... \\
-27 & Machine Learning-Enabled 30-Day Readmission Model for Strok... & include & 30-day readmission after ischaemic stroke, EHR, 5 algor... \\
+23 & Predictors of 30-Day Unplanned Readmission After Carotid Artery Stenting & include & 30-day readmission, Nationwide Readmission Database, ML comparison \\
+24 & Machine learning for clinical decision support in infectious diseases & exclude & O: infection diagnosis/management \\
+25 & Patient clustering improves efficiency of federated machine learning & exclude & O: outcomes are mortality and length of stay \\
+26 & Combining structured and unstructured data for predictive models & exclude & D: fusion with clinical notes; outcome not 30-day readmission \\
+27 & Machine Learning-Enabled 30-Day Readmission Model for Stroke Patients & include & 30-day readmission after ischaemic stroke, EHR, 5 algorithms \\
 28 & Secure and robust machine learning for healthcare: A survey & exclude & R: security/privacy survey \\
 29 & Mining Electronic Health Records (EHRs) & exclude & R: methods survey \\
-30 & Nutritional assessment: comparison of clinical assessment a... & exclude & M: association study, no discrimination metrics reported \\
-31 & Moving beyond regression techniques in cardiovascular risk ... & exclude & O: mortality after myocardial infarction \\
-32 & A machine learning model to predict the risk of 30-day read... & include & 30-day HF readmission from longitudinal EMR, utilisatio... \\
-33 & Neural networks versus Logistic regression for 30 days all-... & include & 30-day all-cause readmission, claims data, NN vs LR com... \\
-34 & Significance of machine learning in healthcare: Features, p... & exclude & R: general overview \\
-35 & Prediction of 30-Day All-Cause Readmissions in Patients Hos... & include & 30-day readmission, ML vs conventional logistic models \\
-36 & Predicting Hospital Readmission among Diabetics using Deep ... & include & same benchmark dataset, CNN + feature engineering \\
-37 & Impact of HbA1c Measurement on Hospital Readmission Rates & exclude & Y: 2014; retained as the provenance record of the datas... \\
-38 & Challenges and opportunities beyond structured data in anal... & exclude & R: review of unstructured-data analytics \\
-39 & Assessment of Machine Learning vs Standard Prediction Rules... & include & 30-day readmission, ML rank score vs LACE/HOSPITAL rules \\
-40 & A stacking-based model for predicting 30-day all-cause read... & include & 30-day readmission, stacking ensemble, undersampling (NCR) \\
+30 & Nutritional assessment: comparison of clinical assessment and objective var... & exclude & M: association study, no discrimination metrics reported \\
+31 & Moving beyond regression techniques in cardiovascular risk prediction & exclude & O: mortality after myocardial infarction \\
+32 & A machine learning model to predict the risk of 30-day readmissions in hear... & include & 30-day HF readmission from longitudinal EMR, utilisation features \\
+33 & Neural networks versus Logistic regression for 30 days all-cause readmission & include & 30-day all-cause readmission, claims data, NN vs LR comparison \\
+34 & Significance of machine learning in healthcare: Features, pillars and appli... & exclude & R: general overview \\
+35 & Prediction of 30-Day All-Cause Readmissions in Patients Hospitalized for He... & include & 30-day readmission, ML vs conventional logistic models \\
+36 & Predicting Hospital Readmission among Diabetics using Deep Learning & include & same benchmark dataset, CNN + feature engineering \\
+37 & Impact of HbA1c Measurement on Hospital Readmission Rates & exclude & Y: 2014; retained as the provenance record of the dataset used here \\
+38 & Challenges and opportunities beyond structured data in analysis of EHR & exclude & R: review of unstructured-data analytics \\
+39 & Assessment of Machine Learning vs Standard Prediction Rules for Readmissions & include & 30-day readmission, ML rank score vs LACE/HOSPITAL rules \\
+40 & A stacking-based model for predicting 30-day all-cause readmissions in AMI & include & 30-day readmission, stacking ensemble, undersampling (NCR) \\
 41 & Machine Learning for Clinical Outcome Prediction & exclude & R: review of outcome-prediction methodology \\
 42 & Machine Learning for Healthcare: On the Verge of a Major Shift & exclude & R: introductory review \\
-43 & Deep learning for electronic health records: a comparative ... & exclude & R: comparative review of architectures \\
-44 & Comparison of machine learning models for predicting 30-day... & include & same benchmark dataset, 10 ML + 1 DL model comparison \\
-45 & Opportunities and challenges in developing risk prediction ... & exclude & R: systematic review of EHR modelling practice \\
-46 & Current Challenges and Future Opportunities for XAI in ML-B... & exclude & R: XAI systematic review \\
-47 & Deep representation learning of patient data from EHR: a sy... & exclude & R: systematic review \\
-48 & A new analytical framework for missing data imputation and ... & include & HF readmission with explicit missing-data framework (GP... \\
-49 & Predicting healthcare trajectories from medical records (De... & include & unplanned readmission for diabetes cohorts from EHR seq... \\
+43 & Deep learning for electronic health records: a comparative review & exclude & R: comparative review of architectures \\
+44 & Comparison of machine learning models for predicting 30-day readmission (di... & include & same benchmark dataset, 10 ML + 1 DL model comparison \\
+45 & Opportunities and challenges in developing risk prediction models with EHR ... & exclude & R: systematic review of EHR modelling practice \\
+46 & Current Challenges and Future Opportunities for XAI in ML-Based CDSS & exclude & R: XAI systematic review \\
+47 & Deep representation learning of patient data from EHR: a systematic review & exclude & R: systematic review \\
+48 & A new analytical framework for missing data imputation and classification & include & HF readmission with explicit missing-data framework (GPLVM) \\
+49 & Predicting healthcare trajectories from medical records (DeepCare) & include & unplanned readmission for diabetes cohorts from EHR sequences \\
 50 & The 30-days hospital readmission risk in diabetic patients & include & same benchmark dataset, RF / NB / decision-tree ensemble \\
-51 & Multitask learning and benchmarking with clinical time seri... & exclude & O: mortality, length of stay, phenotyping benchmarks \\
-52 & Predicting Unplanned Readmissions Following a Hip or Knee A... & include & 30-day readmission after arthroplasty; structured + not... \\
-53 & Interpretability of machine learning-based prediction model... & exclude & R: interpretability review \\
+51 & Multitask learning and benchmarking with clinical time series data & exclude & O: mortality, length of stay, phenotyping benchmarks \\
+52 & Predicting Unplanned Readmissions Following a Hip or Knee Arthroplasty & include & 30-day readmission after arthroplasty; structured + note features \\
+53 & Interpretability of machine learning-based prediction models in healthcare & exclude & R: interpretability review \\
 54 & A survey on datasets for fairness-aware machine learning & exclude & O: fairness benchmark survey \\
-55 & Imbalanced class distribution and performance evaluation me... & exclude & R: systematic review; retained as background on metric ... \\
-56 & Med-BERT: pretrained contextualized embeddings on structure... & exclude & O: disease-onset prediction, not readmission \\
-57 & Comparison of Conventional Statistical Methods with Machine... & exclude & R: methodological comparison review \\
-58 & Deep representation learning of EHR to unlock patient strat... & exclude & O: unsupervised stratification, no readmission outcome \\
-59 & Explainable Stacking-Based Model for Predicting Hospital Re... & include & same benchmark dataset, stacking + RUS + explainability \\
-60 & Shifting machine learning for healthcare from development t... & exclude & R: perspective on deployment \\
+55 & Imbalanced class distribution and performance evaluation metrics & exclude & R: systematic review; retained as background on metric choice \\
+56 & Med-BERT: pretrained contextualized embeddings on structured EHR & exclude & O: disease-onset prediction, not readmission \\
+57 & Comparison of Conventional Statistical Methods with Machine Learning in Med... & exclude & R: methodological comparison review \\
+58 & Deep representation learning of EHR to unlock patient stratification & exclude & O: unsupervised stratification, no readmission outcome \\
+59 & Explainable Stacking-Based Model for Predicting Hospital Readmission for Di... & include & same benchmark dataset, stacking + RUS + explainability \\
+60 & Shifting machine learning for healthcare from development to deployment & exclude & R: perspective on deployment \\
 61 & Applying Artificial Intelligence to Wearable Sensor Data & exclude & D: wearable sensor data, not inpatient records \\
-62 & Predictive Modeling of the Hospital Readmission Risk from C... & include & 30-day COPD readmission, 111,992 patients, deep and non... \\
-63 & Nationwide hospital admission data statistics and disease-s... & include & disease-specific 30-day readmission on national admissi... \\
-64 & Artificial intelligence and machine learning in precision a... & exclude & D: genomics; also retracted \\
-65 & An explainable machine learning framework for lung cancer L... & exclude & O: length of stay; retained as background on resampling... \\
-66 & Early prediction of ICU readmissions using classification a... & include & ICU readmission, tabular clinical predictors, classifie... \\
-67 & Machine learning based prediction models for cardiovascular... & exclude & O: 5-10 year CVD risk, not readmission \\
-68 & Toward Predicting 30-Day Readmission Among Oncology Patients & include & 30-day readmission, patient/provider/community features... \\
-69 & Explainable, trustworthy, and ethical machine learning for ... & exclude & R: survey of explainability and ethics \\
+62 & Predictive Modeling of the Hospital Readmission Risk from Claims Data (COPD) & include & 30-day COPD readmission, 111,992 patients, deep and non-deep models \\
+63 & Nationwide hospital admission data statistics and disease-specific readmission & include & disease-specific 30-day readmission on national admission data \\
+64 & Artificial intelligence and machine learning in precision and genomic medicine & exclude & D: genomics; also retracted \\
+65 & An explainable machine learning framework for lung cancer LOS prediction & exclude & O: length of stay; retained as background on resampling effects \\
+66 & Early prediction of ICU readmissions using classification algorithms & include & ICU readmission, tabular clinical predictors, classifier comparison \\
+67 & Machine learning based prediction models for cardiovascular disease risk & exclude & O: 5-10 year CVD risk, not readmission \\
+68 & Toward Predicting 30-Day Readmission Among Oncology Patients & include & 30-day readmission, patient/provider/community features, LightGBM \\
+69 & Explainable, trustworthy, and ethical machine learning for healthcare & exclude & R: survey of explainability and ethics \\
 70 & Data Mining in Healthcare - A Review & exclude & R: review of data-mining applications \\
-71 & Reducing patient mortality, LOS and readmissions through se... & exclude & O: sepsis onset prediction; readmission only a downstre... \\
+71 & Reducing patient mortality, LOS and readmissions through sepsis prediction & exclude & O: sepsis onset prediction; readmission only a downstream QI metric \\
 72 & Machine Learning-Based Early Prediction of Sepsis Using EHR & exclude & O: sepsis onset \\
-73 & On the interpretability of machine learning-based model for... & exclude & O: hypertension risk \\
-74 & Leveraging Machine Learning Techniques to Forecast Patient ... & exclude & O: prognosis/mortality after PCI \\
-75 & Association of Surgical and Hospital Volume with 30-Day Rea... & exclude & M: association analysis, no predictive performance repo... \\
-76 & Implications of resampling data to address the class imbala... & include & 30-day readmission case study; resampling vs calibratio... \\
+73 & On the interpretability of machine learning-based model for predicting hype... & exclude & O: hypertension risk \\
+74 & Leveraging Machine Learning Techniques to Forecast Patient Prognosis After PCI & exclude & O: prognosis/mortality after PCI \\
+75 & Association of Surgical and Hospital Volume with 30-Day Readmission Rates & exclude & M: association analysis, no predictive performance reported \\
+76 & Implications of resampling data to address the class imbalance problem (IRCIP) & include & 30-day readmission case study; resampling vs calibration - core to RQ3 \\
 \end{longtable}
+\setlength{\tabcolsep}{6pt}

@@ -2,7 +2,7 @@
 \centering
 \small
 \caption{Held-out performance on the patient-disjoint test set. Bracketed values are bootstrap 95\% confidence intervals over 400 resamples.}\label{tab:results}
-\resizebox{\textwidth}{!}{\input{tables/tab_results}}
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{\input{tables/tab_results}}
 \\[3pt]
-\begin{minipage}{\textwidth}\centering {\footnotesize Patient-disjoint test set ($n=24757$ encounters, prevalence 11.3\%). All models except the baseline carry an in-learner imbalance correction; Sens@10\% and PPV@10\% are computed at the threshold that flags the highest-risk decile.}\end{minipage}
+\begin{minipage}{\textwidth}\centering {\footnotesize Patient-disjoint test set ($n=24,757$ encounters, prevalence 11.3\%). All models except the baseline carry an in-learner imbalance correction; Sens@10\% and PPV@10\% are computed by flagging the highest-risk decile of encounters.}\end{minipage}
 \end{table}

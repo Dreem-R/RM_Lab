@@ -2,7 +2,7 @@
 \centering
 \small
 \caption{Optimism induced by encounter-level splitting. Model configurations are held fixed; only the split changes.}\label{tab:split}
-\resizebox{\textwidth}{!}{\input{tables/tab_split}}
+\resizebox{\ifdim\width>\textwidth\textwidth\else\width\fi}{!}{\input{tables/tab_split}}
 \\[3pt]
 \begin{minipage}{\textwidth}\centering {\footnotesize \emph{pat.} = patient-disjoint split; \emph{enc.} = naive random split of encounters, in which 36\% of test patients also appear in training.}\end{minipage}
 \end{table}

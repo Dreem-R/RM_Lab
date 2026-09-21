@@ -162,6 +162,7 @@
     "hi": 0.017323921651661113,
     "p": 0.0
   },
+  "net_benefit_zero_crossing": 0.11333333333333334,
   "imbalance_results": [
     {
       "model": "None",
@@ -506,7 +507,7 @@
       "OR": 0.8752711551
     }
   ],
-  "runtime_minutes": 8.0,
+  "runtime_minutes": 9.1,
   "versions": {
     "numpy": "2.4.6",
     "pandas": "3.0.6",
