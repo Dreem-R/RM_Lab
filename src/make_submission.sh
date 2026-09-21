@@ -23,7 +23,7 @@ The preamble follows the template: T1 font encoding, newtxtext/newtxmath
 (Times Roman), and the Springer URL style.
 
 Before submitting, edit the author block near the top of main.tex
-(the line marked ">>> EDIT THESE THREE LINES BEFORE SUBMITTING <<<").
+The author block is already filled in.
 TXT
 (cd /tmp/overleaf && zip -qr /home/user/RM_Lab/submission/overleaf_project.zip .)
 
