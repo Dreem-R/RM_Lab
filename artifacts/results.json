@@ -1,0 +1,515 @@
+{
+  "n_raw_encounters": 101766,
+  "n_raw_features": 49,
+  "n_raw_patients": 71518,
+  "n_excluded_expired": 2423,
+  "n_excluded_gender": 3,
+  "n_cohort": 99340,
+  "n_cohort_patients": 69987,
+  "prevalence": 0.1138916851218039,
+  "n_positives": 11314,
+  "imbalance_ratio": 7.780272229096695,
+  "encounters_per_patient": 1.419406461199937,
+  "pct_repeat_encounters": 45.997584054761425,
+  "weight_missing_pct": 96.854237970606,
+  "payer_missing_pct": 39.658747735051335,
+  "spec_missing_pct": 48.93698409502718,
+  "race_missing_pct": 2.246829071874371,
+  "n_engineered": 34,
+  "n_numeric": 19,
+  "n_categorical": 15,
+  "rate_prior0": 8.980239187277638,
+  "rate_prior5": 30.653674380836378,
+  "n_signif_bonf": 30,
+  "n_tests": 34,
+  "rate_inp0": 8.589716494067208,
+  "rate_inp4": 31.35760654812306,
+  "rate_disch_max": 16.436643423899977,
+  "rate_disch_max_lbl": "Transfer to another facility",
+  "rate_a1c_notmeas": 11.685210772549876,
+  "rate_a1c_norm": 9.772450223486388,
+  "max_corr_pair": [
+    "number_emergency",
+    "any_prior_emergency",
+    0.9983935052069791
+  ],
+  "n_train": 74583,
+  "n_test": 24757,
+  "n_train_pat": 52490,
+  "n_test_pat": 17497,
+  "prev_train": 0.11430218682541599,
+  "prev_test": 0.11265500666478168,
+  "cv_auprc": {
+    "Logistic regression": 0.20457184266560516,
+    "Random forest": 0.21582619459506236,
+    "XGBoost": 0.21316580423796902,
+    "LightGBM": 0.2130113473258628
+  },
+  "best_params": {
+    "Logistic regression": {
+      "penalty": "l2",
+      "C": "0.01"
+    },
+    "Random forest": {
+      "min_samples_leaf": "50",
+      "max_features": "0.3",
+      "max_depth": "12"
+    },
+    "XGBoost": {
+      "subsample": "0.7",
+      "reg_lambda": "20.0",
+      "min_child_weight": "20",
+      "max_depth": "3",
+      "learning_rate": "0.02",
+      "colsample_bytree": "1.0"
+    },
+    "LightGBM": {
+      "subsample": "0.8",
+      "reg_lambda": "10.0",
+      "num_leaves": "15",
+      "min_child_samples": "200",
+      "learning_rate": "0.02",
+      "colsample_bytree": "1.0"
+    }
+  },
+  "test_results": [
+    {
+      "model": "Baseline (prevalence)",
+      "AUROC": 0.5,
+      "AUPRC": 0.1126550067,
+      "Brier": 0.0999665693,
+      "ECE": 0.0016471802,
+      "sens@10%": 1.0,
+      "ppv@10%": 0.1126550067,
+      "nne@10%": 8.8766583005,
+      "threshold@10%": 0.1143021868,
+      "AUROC_lo": 0.5,
+      "AUROC_hi": 0.5,
+      "AUPRC_lo": 0.1090600638,
+      "AUPRC_hi": 0.1165730904
+    },
+    {
+      "model": "Logistic regression",
+      "AUROC": 0.66449976,
+      "AUPRC": 0.2056925713,
+      "Brier": 0.2272835673,
+      "ECE": 0.3553767613,
+      "sens@10%": 0.2119039082,
+      "ppv@10%": 0.2386914378,
+      "nne@10%": 4.1895093063,
+      "threshold@10%": 0.6505829456,
+      "AUROC_lo": 0.6538289263,
+      "AUROC_hi": 0.675322877,
+      "AUPRC_lo": 0.1935093001,
+      "AUPRC_hi": 0.2202831692
+    },
+    {
+      "model": "Random forest",
+      "AUROC": 0.6742493302,
+      "AUPRC": 0.2186573522,
+      "Brier": 0.2026640537,
+      "ECE": 0.3194538228,
+      "sens@10%": 0.2273216207,
+      "ppv@10%": 0.2560581583,
+      "nne@10%": 3.905362776,
+      "threshold@10%": 0.6116102359,
+      "AUROC_lo": 0.6647189333,
+      "AUROC_hi": 0.6854350988,
+      "AUPRC_lo": 0.2059689101,
+      "AUPRC_hi": 0.2349377725
+    },
+    {
+      "model": "XGBoost",
+      "AUROC": 0.6747950815,
+      "AUPRC": 0.2165708491,
+      "Brier": 0.2231265604,
+      "ECE": 0.3497889065,
+      "sens@10%": 0.2273216207,
+      "ppv@10%": 0.2560581583,
+      "nne@10%": 3.905362776,
+      "threshold@10%": 0.6432829499,
+      "AUROC_lo": 0.6656570208,
+      "AUROC_hi": 0.6856195184,
+      "AUPRC_lo": 0.2038290394,
+      "AUPRC_hi": 0.2320040665
+    },
+    {
+      "model": "LightGBM",
+      "AUROC": 0.6769541838,
+      "AUPRC": 0.2227762066,
+      "Brier": 0.2196767281,
+      "ECE": 0.3433786203,
+      "sens@10%": 0.2348512011,
+      "ppv@10%": 0.26453958,
+      "nne@10%": 3.7801526718,
+      "threshold@10%": 0.6458180487,
+      "AUROC_lo": 0.6677029785,
+      "AUROC_hi": 0.6880824156,
+      "AUPRC_lo": 0.2094949597,
+      "AUPRC_hi": 0.2381631164
+    }
+  ],
+  "best_model": "LightGBM",
+  "delta_AUPRC_best_vs_lr": {
+    "diff": 0.01702991562079786,
+    "lo": 0.011620593255321356,
+    "hi": 0.023599980223168844,
+    "p": 0.0
+  },
+  "delta_AUROC_best_vs_lr": {
+    "diff": 0.012521695456850843,
+    "lo": 0.008317515350883539,
+    "hi": 0.017323921651661113,
+    "p": 0.0
+  },
+  "imbalance_results": [
+    {
+      "model": "None",
+      "AUROC": 0.6758820222,
+      "AUPRC": 0.2232970053,
+      "Brier": 0.0952682161,
+      "ECE": 0.0029289791,
+      "sens@10%": 0.2366439584,
+      "ppv@10%": 0.2665589661,
+      "nne@10%": 3.7515151515,
+      "threshold@10%": 0.1959334175
+    },
+    {
+      "model": "Class weights",
+      "AUROC": 0.6769541838,
+      "AUPRC": 0.2227762066,
+      "Brier": 0.2196767281,
+      "ECE": 0.3433786203,
+      "sens@10%": 0.2348512011,
+      "ppv@10%": 0.26453958,
+      "nne@10%": 3.7801526718,
+      "threshold@10%": 0.6458180487
+    },
+    {
+      "model": "SMOTE (1:1)",
+      "AUROC": 0.675479272,
+      "AUPRC": 0.218299975,
+      "Brier": 0.0955425991,
+      "ECE": 0.0085913524,
+      "sens@10%": 0.2305485837,
+      "ppv@10%": 0.2596930533,
+      "nne@10%": 3.8506998445,
+      "threshold@10%": 0.1964018376
+    },
+    {
+      "model": "SMOTE-NC (1:1)",
+      "AUROC": 0.6010119318,
+      "AUPRC": 0.1554319456,
+      "Brier": 0.1420219406,
+      "ECE": 0.158732072,
+      "sens@10%": 0.1667264252,
+      "ppv@10%": 0.1878029079,
+      "nne@10%": 5.3247311828,
+      "threshold@10%": 0.5258545146
+    },
+    {
+      "model": "Undersampling (1:1)",
+      "AUROC": 0.6716122437,
+      "AUPRC": 0.2143153679,
+      "Brier": 0.2261035748,
+      "ECE": 0.3510639391,
+      "sens@10%": 0.2251703119,
+      "ppv@10%": 0.253634895,
+      "nne@10%": 3.9426751592,
+      "threshold@10%": 0.6613598983
+    },
+    {
+      "model": "None + isotonic",
+      "AUROC": 0.6741539472,
+      "AUPRC": 0.2113427357,
+      "Brier": 0.0954456454,
+      "ECE": 0.0053191817,
+      "sens@10%": 0.340982431,
+      "ppv@10%": 0.2311057108,
+      "nne@10%": 4.3270241851,
+      "threshold@10%": 0.1908471276
+    }
+  ],
+  "mean_pred_risk": {
+    "None": 0.11333685818209463,
+    "Class weights": 0.45603362694823163,
+    "SMOTE (1:1)": 0.1189810974984737,
+    "SMOTE-NC (1:1)": 0.27138707866979495,
+    "Undersampling (1:1)": 0.4637189457530398,
+    "None + isotonic": 0.1124209306226172
+  },
+  "naive_overlap_patients": 7836,
+  "naive_overlap_pct": 35.7726546450582,
+  "split_results": [
+    {
+      "model": "Logistic regression",
+      "AUROC_patient": 0.66449976,
+      "AUPRC_patient": 0.2056925713,
+      "AUROC_encounter": 0.6647947429,
+      "AUPRC_encounter": 0.2070222083,
+      "dAUROC": 0.0002949829,
+      "dAUPRC": 0.001329637,
+      "rel_AUPRC_%": 0.6464195311
+    },
+    {
+      "model": "Random forest",
+      "AUROC_patient": 0.6742493302,
+      "AUPRC_patient": 0.2186573522,
+      "AUROC_encounter": 0.6785854559,
+      "AUPRC_encounter": 0.2232057295,
+      "dAUROC": 0.0043361256,
+      "dAUPRC": 0.0045483773,
+      "rel_AUPRC_%": 2.0801391922
+    },
+    {
+      "model": "XGBoost",
+      "AUROC_patient": 0.6747950815,
+      "AUPRC_patient": 0.2165708491,
+      "AUROC_encounter": 0.6775666692,
+      "AUPRC_encounter": 0.2190874099,
+      "dAUROC": 0.0027715877,
+      "dAUPRC": 0.0025165609,
+      "rel_AUPRC_%": 1.1620035045
+    },
+    {
+      "model": "LightGBM",
+      "AUROC_patient": 0.6769541838,
+      "AUPRC_patient": 0.2227762066,
+      "AUROC_encounter": 0.6803808214,
+      "AUPRC_encounter": 0.2215275886,
+      "dAUROC": 0.0034266376,
+      "dAUPRC": -0.001248618,
+      "rel_AUPRC_%": -0.5604808605
+    }
+  ],
+  "max_optimism_auprc_pct": 2.0801391922088723,
+  "mean_optimism_auroc": 0.002707333446400173,
+  "ablation": [
+    {
+      "setting": "+ Demographic",
+      "kind": "cumulative",
+      "n_feat": 3,
+      "AUROC": 0.5103795406,
+      "AUPRC": 0.1167161563,
+      "delta_vs_full": -0.106580849
+    },
+    {
+      "setting": "+ Administrative",
+      "kind": "cumulative",
+      "n_feat": 8,
+      "AUROC": 0.6053077432,
+      "AUPRC": 0.1671716696,
+      "delta_vs_full": -0.0561253358
+    },
+    {
+      "setting": "+ Clinical",
+      "kind": "cumulative",
+      "n_feat": 22,
+      "AUROC": 0.6253754279,
+      "AUPRC": 0.172470736,
+      "delta_vs_full": -0.0508262693
+    },
+    {
+      "setting": "+ Medication",
+      "kind": "cumulative",
+      "n_feat": 27,
+      "AUROC": 0.6319706169,
+      "AUPRC": 0.176419597,
+      "delta_vs_full": -0.0468774083
+    },
+    {
+      "setting": "+ Prior utilisation",
+      "kind": "cumulative",
+      "n_feat": 34,
+      "AUROC": 0.6758820222,
+      "AUPRC": 0.2232970053,
+      "delta_vs_full": 0.0
+    },
+    {
+      "setting": "- Demographic",
+      "kind": "leave-one-out",
+      "n_feat": 31,
+      "AUROC": 0.6762336778,
+      "AUPRC": 0.2231412151,
+      "delta_vs_full": -0.0001557902
+    },
+    {
+      "setting": "- Administrative",
+      "kind": "leave-one-out",
+      "n_feat": 29,
+      "AUROC": 0.6516894942,
+      "AUPRC": 0.2079890855,
+      "delta_vs_full": -0.0153079198
+    },
+    {
+      "setting": "- Clinical",
+      "kind": "leave-one-out",
+      "n_feat": 20,
+      "AUROC": 0.670621747,
+      "AUPRC": 0.2189764901,
+      "delta_vs_full": -0.0043205152
+    },
+    {
+      "setting": "- Medication",
+      "kind": "leave-one-out",
+      "n_feat": 29,
+      "AUROC": 0.6744082693,
+      "AUPRC": 0.221464255,
+      "delta_vs_full": -0.0018327503
+    },
+    {
+      "setting": "- Prior utilisation",
+      "kind": "leave-one-out",
+      "n_feat": 27,
+      "AUROC": 0.6319706169,
+      "AUPRC": 0.176419597,
+      "delta_vs_full": -0.0468774083
+    }
+  ],
+  "full_model_auprc": 0.2232970053282327,
+  "top_shap": [
+    [
+      "number_inpatient",
+      0.18441501619122533
+    ],
+    [
+      "discharge_group_Transfer to another facility",
+      0.1295943931679312
+    ],
+    [
+      "discharge_group_Home",
+      0.1092220357033363
+    ],
+    [
+      "prior_encounters",
+      0.10639540165304004
+    ],
+    [
+      "payer_code_Missing",
+      0.06654834968717194
+    ],
+    [
+      "service_utilization",
+      0.06566878790038086
+    ],
+    [
+      "number_diagnoses",
+      0.05636275505941317
+    ],
+    [
+      "age_mid",
+      0.053363530422670266
+    ],
+    [
+      "n_meds_active",
+      0.042868529582684306
+    ],
+    [
+      "diag_1_group_Circulatory",
+      0.03991704497315443
+    ],
+    [
+      "time_in_hospital",
+      0.028709003668291867
+    ],
+    [
+      "num_medications",
+      0.026908425988755237
+    ],
+    [
+      "meds_per_day",
+      0.02607318787364299
+    ],
+    [
+      "num_lab_procedures",
+      0.024655561158570122
+    ],
+    [
+      "number_emergency",
+      0.02343262224914264
+    ]
+  ],
+  "top_odds_ratios": [
+    {
+      "feature": "discharge_group_Transfer to another facility",
+      "coef": 0.3222589549,
+      "OR": 1.3802421501
+    },
+    {
+      "feature": "discharge_group_Home",
+      "coef": -0.2605763339,
+      "OR": 0.7706073307
+    },
+    {
+      "feature": "diag_2_group_Neoplasms",
+      "coef": 0.2527070935,
+      "OR": 1.2875061027
+    },
+    {
+      "feature": "medical_specialty_Nephrology",
+      "coef": 0.2279854816,
+      "OR": 1.2560670892
+    },
+    {
+      "feature": "medical_specialty_ObstetricsandGynecology",
+      "coef": -0.2102401964,
+      "OR": 0.8103895699
+    },
+    {
+      "feature": "diag_3_group_Missing",
+      "coef": -0.1966335779,
+      "OR": 0.8214915908
+    },
+    {
+      "feature": "number_inpatient",
+      "coef": 0.1755842571,
+      "OR": 1.1919424141
+    },
+    {
+      "feature": "payer_code_Missing",
+      "coef": 0.170616861,
+      "OR": 1.1860362453
+    },
+    {
+      "feature": "medical_specialty_Surgery-Cardiovascular/Thoracic",
+      "coef": -0.1702989598,
+      "OR": 0.8434126324
+    },
+    {
+      "feature": "medical_specialty_Orthopedics-Reconstructive",
+      "coef": -0.1635698666,
+      "OR": 0.8491071727
+    },
+    {
+      "feature": "payer_code_OG",
+      "coef": 0.1588479165,
+      "OR": 1.172159667
+    },
+    {
+      "feature": "diag_3_group_Neoplasms",
+      "coef": 0.1443640633,
+      "OR": 1.1553046359
+    },
+    {
+      "feature": "diag_2_group_Respiratory",
+      "coef": -0.1375429364,
+      "OR": 0.8714969303
+    },
+    {
+      "feature": "diag_1_group_Respiratory",
+      "coef": -0.1364925751,
+      "OR": 0.8724127978
+    },
+    {
+      "feature": "diabetesMed_No",
+      "coef": -0.1332215491,
+      "OR": 0.8752711551
+    }
+  ],
+  "runtime_minutes": 8.7,
+  "versions": {
+    "numpy": "2.4.6",
+    "pandas": "3.0.6",
+    "matplotlib": "3.11.2"
+  }
+}

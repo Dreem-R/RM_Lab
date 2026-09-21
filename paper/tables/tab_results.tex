@@ -1,0 +1,11 @@
+\begin{tabular}{lcccccc}
+\hline\noalign{\smallskip}
+Model & AUROC [95\% CI] & AUPRC [95\% CI] & Brier & ECE & Sens@10\% & PPV@10\% \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+Baseline (prevalence) & 0.500 [0.500, 0.500] & 0.113 [0.109, 0.117] & 0.100 & 0.002 & 100.0 & 11.3 \\
+Logistic regression & 0.664 [0.654, 0.675] & 0.206 [0.194, 0.220] & 0.227 & 0.355 & 21.2 & 23.9 \\
+Random forest & 0.674 [0.665, 0.685] & 0.219 [0.206, 0.235] & 0.203 & 0.319 & 22.7 & 25.6 \\
+XGBoost & 0.675 [0.666, 0.686] & 0.217 [0.204, 0.232] & 0.223 & 0.350 & 22.7 & 25.6 \\
+LightGBM & 0.677 [0.668, 0.688] & 0.223 [0.209, 0.238] & 0.220 & 0.343 & 23.5 & 26.5 \\
+\noalign{\smallskip}\hline
+\end{tabular}

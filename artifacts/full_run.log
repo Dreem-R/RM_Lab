@@ -1,0 +1,189 @@
+Raw shape: (101766, 50)
+                          dtype  n_unique  missing_%
+encounter_id              int64    101766       0.00
+patient_nbr               int64     71518       0.00
+race                        str         5       2.23
+gender                      str         3       0.00
+age                         str        10       0.00
+weight                      str         9      96.86
+admission_type_id         int64         8       0.00
+discharge_disposition_id  int64        26       0.00
+admission_source_id       int64        17       0.00
+time_in_hospital          int64        14       0.00
+payer_code                  str        17      39.56
+medical_specialty           str        72      49.08
+num_lab_procedures        int64       118       0.00
+num_procedures            int64         7       0.00
+num_medications           int64        75       0.00
+number_outpatient         int64        39       0.00
+number_emergency          int64        33       0.00
+number_inpatient          int64        21       0.00
+diag_1                      str       716       0.02
+diag_2                      str       748       0.35
+diag_3                      str       789       1.40
+number_diagnoses          int64        16       0.00
+max_glu_serum               str         3      94.75
+A1Cresult                   str         3      83.28
+metformin                   str         4       0.00
+repaglinide                 str         4       0.00
+nateglinide                 str         4       0.00
+chlorpropamide              str         4       0.00
+glimepiride                 str         4       0.00
+acetohexamide               str         2       0.00
+glipizide                   str         4       0.00
+glyburide                   str         4       0.00
+tolbutamide                 str         2       0.00
+pioglitazone                str         4       0.00
+rosiglitazone               str         4       0.00
+acarbose                    str         4       0.00
+miglitol                    str         4       0.00
+troglitazone                str         2       0.00
+tolazamide                  str         3       0.00
+examide                     str         1       0.00
+citoglipton                 str         1       0.00
+insulin                     str         4       0.00
+glyburide-metformin         str         4       0.00
+glipizide-metformin         str         2       0.00
+glimepiride-pioglitazone    str         2       0.00
+metformin-rosiglitazone     str         2       0.00
+metformin-pioglitazone      str         2       0.00
+change                      str         2       0.00
+diabetesMed                 str         2       0.00
+readmitted                  str         3       0.00
+encounters: 101766 -> 99343 (expired/hospice removed: 2423) -> 99340 (invalid gender: 3)
+cohort: 99,340 encounters from 69,987 patients
+30-day readmission prevalence: 0.1139  (11,314 positives)
+imbalance ratio 1:7.8
+         Variable  Missing (%)  Readm. rate | missing (%)  Readm. rate | observed (%)      chi2            p
+           weight    96.854238                  11.389077                   11.392000  0.000000 1.000000e+00
+    max_glu_serum    94.813771                  11.314605                   12.752329  9.863106 1.686262e-03
+        A1Cresult    83.054157                  11.685211                    9.938220 42.108627 8.634145e-11
+medical_specialty    48.936984                  11.834040                   10.962820 18.583775 1.625986e-05
+       payer_code    39.658748                  11.691246                   11.190631  5.853942 1.554220e-02
+             race     2.246829                   8.422939                   11.457346 19.606920 9.512405e-06
+           diag_3     1.428428                   6.412967                   11.461280 34.823750 3.609435e-09
+           diag_2     0.358365                   8.146067                   11.400832  3.407975 6.488203e-02
+           diag_1     0.020133                  25.000000                   11.386428  2.446987 1.177507e-01
+\begin{tabular}{lrrrr}
+\hline\noalign{\smallskip}
+Variable & Missing (\%) & Readm. if missing (\%) & Readm. if observed (\%) & $p$ \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+weight & 96.9 & 11.4 & 11.4 & 1.000 \\
+max\_glu\_serum & 94.8 & 11.3 & 12.8 & 0.002 \\
+engineered feature matrix: (99340, 34)
+19 numeric, 15 categorical ->  34 variables
+  saved figures/fig_outcome.pdf
+            feature        type   effect             p      medians        p_bonf
+   number_inpatient     numeric 0.214528  0.000000e+00   0.0 vs 0.0  0.000000e+00
+service_utilization     numeric 0.208397  0.000000e+00   1.0 vs 0.0  0.000000e+00
+   prior_encounters     numeric 0.186684  0.000000e+00   0.0 vs 0.0  0.000000e+00
+any_prior_inpatient     numeric 0.184971  0.000000e+00   0.0 vs 0.0  0.000000e+00
+   time_in_hospital     numeric 0.095394  1.587928e-62   4.0 vs 4.0  5.398957e-61
+    discharge_group categorical 0.090525 6.863832e-175              2.333703e-173
+   number_diagnoses     numeric 0.088026  2.632621e-59   9.0 vs 8.0  8.950910e-58
+    num_medications     numeric 0.087191  9.394582e-52 16.0 vs 15.0  3.194158e-50
+   number_emergency     numeric 0.063966  1.244690e-91   0.0 vs 0.0  4.231945e-90
+any_prior_emergency     numeric 0.061791  6.622366e-86   0.0 vs 0.0  2.251605e-84
+      n_med_changes     numeric 0.052667  3.040570e-32   0.0 vs 0.0  1.033794e-30
+        lab_per_day     numeric 0.051835  2.480650e-19 10.2 vs 11.0  8.434209e-18
+            insulin categorical 0.044782  6.221589e-43               2.115340e-41
+ num_lab_procedures     numeric 0.043830  2.910622e-14 45.0 vs 44.0  9.896116e-13
+            age_mid     numeric 0.043246  2.057331e-14 65.0 vs 65.0  6.994925e-13
+  saved figures/fig_assoc.pdf
+  saved figures/fig_riskstrat.pdf
+  saved figures/fig_corr.pdf
+strongest |rho| pair: ['number_emergency', 'any_prior_emergency', 0.9983935052069791]
+train 74,583 enc / 52,490 patients  (prev 0.1143)
+test  24,757 enc / 17,497 patients  (prev 0.1127)
+patient overlap: 0
+scale_pos_weight = 7.75
+Logistic regression  CV AUPRC=0.2046  (46s)
+   best: {'penalty': 'l2', 'C': 0.01}
+Random forest        CV AUPRC=0.2158  (152s)
+   best: {'min_samples_leaf': 50, 'max_features': 0.3, 'max_depth': 12}
+XGBoost              CV AUPRC=0.2132  (125s)
+   best: {'subsample': 0.7, 'reg_lambda': 20.0, 'min_child_weight': 20, 'max_depth': 3, 'learning_rate': 0.02, 'colsample_bytree': 1.0}
+LightGBM             CV AUPRC=0.2130  (61s)
+   best: {'subsample': 0.8, 'reg_lambda': 10.0, 'num_leaves': 15, 'min_child_samples': 200, 'learning_rate': 0.02, 'colsample_bytree': 1.0}
+{
+ "Logistic regression": 0.20457184266560516,
+ "Random forest": 0.21582619459506236,
+ "XGBoost": 0.21316580423796902,
+ "LightGBM": 0.2130113473258628
+}
+cached -> /home/user/RM_Lab/artifacts/models.joblib
+                        AUROC   AUPRC   Brier     ECE  sens@10%  ppv@10%  nne@10%  threshold@10%  AUROC_lo  AUROC_hi  AUPRC_lo  AUPRC_hi
+model                                                                                                                                   
+Baseline (prevalence)  0.5000  0.1127  0.1000  0.0016    1.0000   0.1127   8.8767         0.1143    0.5000    0.5000    0.1091    0.1166
+Logistic regression    0.6645  0.2057  0.2273  0.3554    0.2119   0.2387   4.1895         0.6506    0.6538    0.6753    0.1935    0.2203
+Random forest          0.6742  0.2187  0.2027  0.3195    0.2273   0.2561   3.9054         0.6116    0.6647    0.6854    0.2060    0.2349
+XGBoost                0.6748  0.2166  0.2231  0.3498    0.2273   0.2561   3.9054         0.6433    0.6657    0.6856    0.2038    0.2320
+LightGBM               0.6770  0.2228  0.2197  0.3434    0.2349   0.2645   3.7802         0.6458    0.6677    0.6881    0.2095    0.2382
+
+best model by test AUPRC: LightGBM
+LightGBM - LR  AUPRC: +0.0170  95% CI [+0.0116, +0.0236]  p=0.000
+LightGBM - LR  AUROC: +0.0125  95% CI [+0.0083, +0.0173]  p=0.000
+  saved figures/fig_performance.pdf
+  saved figures/fig_utility.pdf
+                      AUROC   AUPRC   Brier     ECE  sens@10%  ppv@10%  nne@10%
+model                                                                          
+None                 0.6759  0.2233  0.0953  0.0029    0.2366   0.2666   3.7515
+Class weights        0.6770  0.2228  0.2197  0.3434    0.2349   0.2645   3.7802
+SMOTE (1:1)          0.6755  0.2183  0.0955  0.0086    0.2305   0.2597   3.8507
+SMOTE-NC (1:1)       0.6010  0.1554  0.1420  0.1587    0.1667   0.1878   5.3247
+Undersampling (1:1)  0.6716  0.2143  0.2261  0.3511    0.2252   0.2536   3.9427
+None + isotonic      0.6742  0.2113  0.0954  0.0053    0.3410   0.2311   4.3270
+
+mean predicted risk (true prevalence = 0.113):
+{'None': 0.113, 'Class weights': 0.456, 'SMOTE (1:1)': 0.119, 'SMOTE-NC (1:1)': 0.271, 'Undersampling (1:1)': 0.464, 'None + isotonic': 0.112}
+  saved figures/fig_imbalance.pdf
+patients appearing on both sides of the naive split: 7,836 (35.8% of test patients)
+                     AUROC_patient  AUPRC_patient  AUROC_encounter  AUPRC_encounter  dAUROC  dAUPRC  rel_AUPRC_%
+model                                                                                                           
+Logistic regression         0.6645         0.2057           0.6648           0.2070  0.0003  0.0013       0.6464
+Random forest               0.6742         0.2187           0.6786           0.2232  0.0043  0.0045       2.0801
+XGBoost                     0.6748         0.2166           0.6776           0.2191  0.0028  0.0025       1.1620
+LightGBM                    0.6770         0.2228           0.6804           0.2215  0.0034 -0.0012      -0.5605
+  saved figures/fig_leakage.pdf
+cumulative Demographic          AUPRC=0.1167
+cumulative Administrative       AUPRC=0.1672
+cumulative Clinical             AUPRC=0.1725
+cumulative Medication           AUPRC=0.1764
+cumulative Prior utilisation    AUPRC=0.2233
+drop       Demographic          AUPRC=0.2231
+drop       Administrative       AUPRC=0.2080
+drop       Clinical             AUPRC=0.2190
+drop       Medication           AUPRC=0.2215
+drop       Prior utilisation    AUPRC=0.1764
+            setting          kind  n_feat  AUROC  AUPRC  delta_vs_full
+      + Demographic    cumulative       3 0.5104 0.1167        -0.1066
+   + Administrative    cumulative       8 0.6053 0.1672        -0.0561
+         + Clinical    cumulative      22 0.6254 0.1725        -0.0508
+       + Medication    cumulative      27 0.6320 0.1764        -0.0469
++ Prior utilisation    cumulative      34 0.6759 0.2233         0.0000
+      - Demographic leave-one-out      31 0.6762 0.2231        -0.0002
+   - Administrative leave-one-out      29 0.6517 0.2080        -0.0153
+         - Clinical leave-one-out      20 0.6706 0.2190        -0.0043
+       - Medication leave-one-out      29 0.6744 0.2215        -0.0018
+- Prior utilisation leave-one-out      27 0.6320 0.1764        -0.0469
+  saved figures/fig_ablation.pdf
+  saved figures/fig_shap.pdf
+                                          feature   coef    OR
+     discharge_group_Transfer to another facility  0.322 1.380
+                             discharge_group_Home -0.261 0.771
+                           diag_2_group_Neoplasms  0.253 1.288
+                     medical_specialty_Nephrology  0.228 1.256
+        medical_specialty_ObstetricsandGynecology -0.210 0.810
+                             diag_3_group_Missing -0.197 0.821
+                                 number_inpatient  0.176 1.192
+                               payer_code_Missing  0.171 1.186
+medical_specialty_Surgery-Cardiovascular/Thoracic -0.170 0.843
+     medical_specialty_Orthopedics-Reconstructive -0.164 0.849
+                                    payer_code_OG  0.159 1.172
+                           diag_3_group_Neoplasms  0.144 1.155
+                         diag_2_group_Respiratory -0.138 0.871
+                         diag_1_group_Respiratory -0.136 0.872
+                                   diabetesMed_No -0.133 0.875
+tables written: ['tab_ablation.tex', 'tab_ablation_note.tex', 'tab_ablation_wrapper.tex', 'tab_cohort.tex', 'tab_cohort_note.tex', 'tab_cohort_wrapper.tex', 'tab_extraction.tex', 'tab_extraction_wrapper.tex', 'tab_imbalance.tex', 'tab_imbalance_note.tex', 'tab_imbalance_wrapper.tex', 'tab_missing.tex', 'tab_missing_wrapper.tex', 'tab_predictors.tex', 'tab_predictors_note.tex', 'tab_predictors_wrapper.tex', 'tab_results.tex', 'tab_results_note.tex', 'tab_results_wrapper.tex', 'tab_screening.tex', 'tab_search_log.tex', 'tab_split.tex', 'tab_split_note.tex', 'tab_split_wrapper.tex']
+
+All results registered -> artifacts/results.json  (55 keys, 8.7 min runtime)

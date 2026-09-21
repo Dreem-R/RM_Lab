@@ -1,0 +1,15 @@
+\begin{tabular}{p{1.7cm}p{2.7cm}p{3.5cm}p{4.0cm}}
+\hline\noalign{\smallskip}
+Study & Data & Method & Limitation relevant to this work \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+\cite{strack2014} & Diabetes 130-US (101,766 enc.) & Multivariable logistic regression & Dataset provenance; one encounter per patient retained, no ML comparison \\
+\cite{shang2021} & Diabetes 130-US & Random forest, naive Bayes, decision-tree ensemble & Encounter-level split; accuracy-oriented metrics; calibration not reported \\
+\cite{lu2022} & Diabetes 130-US & Stacking ensemble + random undersampling & Undersampling applied before splitting the data; calibration not reported \\
+\cite{liu2024} & Diabetes 130-US & 10 ML models + LSTM & Patient clustering not addressed; AUROC-centred comparison \\
+\cite{welvaars2023} & Urology readmissions & 7 resampling ratios $\times$ several classifiers & Shows resampling inflates positive predictions; single-centre \\
+\cite{goorbergh2022} & Simulation + clinical data & Logistic regression under imbalance corrections & Simulation-based; tree ensembles not examined \\
+\cite{amritphale2021} & Nationwide Readmission Database & LR, SVM, DNN, RF, decision tree & Administrative claims only; no laboratory variables \\
+\cite{darabi2021} & Stroke EHR ($n=3{,}184$) & RF, GBM, XGBoost, SVM, LR + adaptive sampling & Small cohort; resampling chosen on validation performance \\
+\cite{mahmoudi2020} & 41 studies (systematic review) & Narrative synthesis & Reports median AUROC $\approx$ 0.68; few studies report calibration \\
+\noalign{\smallskip}\hline
+\end{tabular}

@@ -1,0 +1,12 @@
+\begin{tabular}{lcccccc}
+\hline\noalign{\smallskip}
+Imbalance treatment & AUROC & AUPRC & Brier & ECE & Mean $\hat p$ & Sens@10\% \\
+\noalign{\smallskip}\hline\noalign{\smallskip}
+None & 0.676 & 0.223 & 0.095 & 0.003 & 0.113 & 23.7 \\
+Class weights & 0.677 & 0.223 & 0.220 & 0.343 & 0.456 & 23.5 \\
+SMOTE (1:1) & 0.675 & 0.218 & 0.096 & 0.009 & 0.119 & 23.1 \\
+SMOTE-NC (1:1) & 0.601 & 0.155 & 0.142 & 0.159 & 0.271 & 16.7 \\
+Undersampling (1:1) & 0.672 & 0.214 & 0.226 & 0.351 & 0.464 & 22.5 \\
+None + isotonic & 0.674 & 0.211 & 0.095 & 0.005 & 0.112 & 34.1 \\
+\noalign{\smallskip}\hline
+\end{tabular}
