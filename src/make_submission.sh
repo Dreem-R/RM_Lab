@@ -40,6 +40,12 @@ pandoc PROMPTS.md -o submission/prompt_history.pdf --pdf-engine=xelatex \
   --toc --toc-depth=2
 cp data/DATASET.md submission/dataset_source.md
 
+# viva walkthrough notes (not a submission item; for explaining the work)
+pandoc WALKTHROUGH.md -o submission/my_walkthrough_notes.pdf --pdf-engine=xelatex \
+  -V geometry:a4paper -V geometry:margin=2.2cm -V fontsize=11pt -V colorlinks=true \
+  --toc --toc-depth=1
+pandoc WALKTHROUGH.md -o submission/my_walkthrough_notes.docx
+
 # a single archive with everything, for convenience
 rm -rf /tmp/allsub && mkdir -p /tmp/allsub
 cp submission/* /tmp/allsub/ 2>/dev/null || true
