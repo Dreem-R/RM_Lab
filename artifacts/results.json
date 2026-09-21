@@ -507,7 +507,7 @@
       "OR": 0.8752711551
     }
   ],
-  "runtime_minutes": 9.1,
+  "runtime_minutes": 8.3,
   "versions": {
     "numpy": "2.4.6",
     "pandas": "3.0.6",

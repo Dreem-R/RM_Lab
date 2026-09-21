@@ -3,20 +3,20 @@
 cells: 54
 [NbConvertApp] Converting notebook notebook/readmission_analysis.ipynb to notebook
 [IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
-[NbConvertApp] Writing 115747 bytes to notebook/readmission_analysis.ipynb
+[NbConvertApp] Writing 115731 bytes to notebook/readmission_analysis.ipynb
 [NbConvertApp] Converting notebook notebook/readmission_analysis.ipynb to html
-[NbConvertApp] Writing 677581 bytes to notebook/readmission_analysis.html
+[NbConvertApp] Writing 677761 bytes to notebook/readmission_analysis.html
 [NbConvertApp] Converting notebook notebook/readmission_analysis.ipynb to pdf
-[NbConvertApp] Writing 280611 bytes to notebook.tex
+[NbConvertApp] Writing 280803 bytes to notebook.tex
 [NbConvertApp] Building PDF
 [NbConvertApp] Running xelatex 3 times: ['xelatex', 'notebook.tex', '-quiet']
 [NbConvertApp] Running bibtex 1 time: ['bibtex', 'notebook']
 [NbConvertApp] WARNING | bibtex had problems, most likely because there were no citations
 [NbConvertApp] PDF successfully created
-[NbConvertApp] Writing 220503 bytes to notebook/readmission_analysis.pdf
+[NbConvertApp] Writing 220647 bytes to notebook/readmission_analysis.pdf
 total 1004
-drwxr-xr-x  2 root root   4096 Sep 21 10:13 .
+drwxr-xr-x  2 root root   4096 Sep 21 10:27 .
 drwxr-xr-x 10 root root   4096 Sep 21 09:40 ..
--rw-r--r--  1 root root 677675 Sep 21 10:22 readmission_analysis.html
--rw-r--r--  1 root root 115784 Sep 21 10:22 readmission_analysis.ipynb
--rw-r--r--  1 root root 220503 Sep 21 10:22 readmission_analysis.pdf
+-rw-r--r--  1 root root 677855 Sep 21 10:36 readmission_analysis.html
+-rw-r--r--  1 root root 115768 Sep 21 10:36 readmission_analysis.ipynb
+-rw-r--r--  1 root root 220647 Sep 21 10:36 readmission_analysis.pdf
